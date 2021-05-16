@@ -15,4 +15,25 @@ public class Ui_manager : MonoBehaviour
     {
         
     }
+
+	public void onRightButtonClick()
+	{
+	
+	}
+	public void onLeftButtonClick()
+	{
+	
+	}
+	public void onUpButtonClick()
+	{
+	
+	}
+	public void onDownButtonClick()
+	{
+	
+	}
+	public void onFireButtonClick()
+	{
+	
+	}
 }

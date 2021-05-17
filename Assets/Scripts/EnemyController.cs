@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
     public void ReduceHealth()
     {
-        GameManager.Instance.NumOfEnemies--;
+        GameManager.Instance.AfterEnemyDied();
         Destroy(gameObject);
     }
 }

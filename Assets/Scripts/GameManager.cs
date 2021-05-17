@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject EndGameCanvas_GO;
+
     [HideInInspector]
     public int NumOfEnemies;
 
@@ -19,5 +21,15 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AfterEnemyDied()
+    {
+        NumOfEnemies--;
+        if (NumOfEnemies == 0)
+        {
+            PlayerController.IsLevelCompleted = true;
+            EndGameCanvas_GO.SetActive(true);
+        }
     }
 }

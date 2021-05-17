@@ -16,18 +16,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody Rigidbody;
     public GameObject LeftGunFireTransform;
     public GameObject RightGunFireTransform;
-
-    private Joystick MoveJoystick;
-    private Joystick RotationJoystick;
+    [Space]
+    public Joystick MoveJoystick;
+    public Joystick RotationJoystick;
 
     private Coroutine FireCoroutine = null;
 
     void Start()
     {
-        Joystick[] joysticks = FindObjectsOfType<Joystick>();
-        MoveJoystick = joysticks[0];
-        RotationJoystick = joysticks[1];
-
         FireCoroutine = StartCoroutine(Fire());
         IsLevelCompleted = false;
     }

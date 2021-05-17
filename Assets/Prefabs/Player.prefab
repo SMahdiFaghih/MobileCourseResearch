@@ -290,6 +290,8 @@ MonoBehaviour:
   Rigidbody: {fileID: 6815491713115272681}
   LeftGunFireTransform: {fileID: 6815491711806045732}
   RightGunFireTransform: {fileID: 6815491713502434630}
+  MoveJoystick: {fileID: 0}
+  RotationJoystick: {fileID: 0}
 --- !u!114 &6815491713115272678
 MonoBehaviour:
   m_ObjectHideFlags: 0

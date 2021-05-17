@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
         Move();
         if (transform.position.y < 0)
         {
-            GameManager.Instance.numOfEnemies++;
+            GameManager.Instance.NumOfEnemies++;
             Destroy(gameObject);
         }
     }
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
     public void ReduceHealth()
     {
-        GameManager.Instance.numOfEnemies--;
+        GameManager.Instance.NumOfEnemies--;
         Destroy(gameObject);
     }
 }

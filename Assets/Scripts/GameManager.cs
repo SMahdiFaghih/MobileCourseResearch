@@ -6,24 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public int numOfEnemies;
+
+    [HideInInspector]
+    public int NumOfEnemies;
 
     void Awake()
     {
         Instance = this;
-        numOfEnemies = GameObject.FindGameObjectsWithTag("enemy").Length;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        NumOfEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
     public void Restart()

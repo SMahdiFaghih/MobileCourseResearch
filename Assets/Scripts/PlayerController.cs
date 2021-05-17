@@ -17,15 +17,16 @@ public class PlayerController : MonoBehaviour
     public GameObject LeftGunFireTransform;
     public GameObject RightGunFireTransform;
 
-    private Joystick Joystick;
-    public JoyButton JoyButton;
+    private Joystick MoveJoystick;
+    private Joystick RotationJoystick;
 
     private Coroutine FireCoroutine = null;
 
     void Start()
     {
-        Joystick = FindObjectOfType<Joystick>();
-        JoyButton = FindObjectOfType<JoyButton>();
+        Joystick[] joysticks = FindObjectsOfType<Joystick>();
+        MoveJoystick = joysticks[0];
+        RotationJoystick = joysticks[1];
 
         FireCoroutine = StartCoroutine(Fire());
         IsLevelCompleted = false;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (!IsLevelCompleted)
         {
             Move();
+            Rotate();
         }
         else
         {
@@ -45,26 +47,27 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Rigidbody.velocity = (Joystick.Horizontal * Vector3.right + Joystick.Vertical * Vector3.forward) * Velocity;
-        transform.LookAt(transform.position + Joystick.Horizontal * Vector3.right + Joystick.Vertical * Vector3.forward);
+        Rigidbody.velocity = (MoveJoystick.Horizontal * Vector3.right + MoveJoystick.Vertical * Vector3.forward) * Velocity;
+    }
+
+    private void Rotate()
+    {
+        transform.LookAt(transform.position + RotationJoystick.Horizontal * Vector3.right + RotationJoystick.Vertical * Vector3.forward);
     }
 
     private IEnumerator Fire()
     {
         while (true)
         {
-            if (JoyButton.buttonPressed)
-            {
-                Rigidbody leftBullet = Instantiate(BulletPrefab, LeftGunFireTransform.transform.position, LeftGunFireTransform.transform.rotation).GetComponent<Rigidbody>();
-                leftBullet.velocity = transform.forward * BulletVelocity;
+            Rigidbody leftBullet = Instantiate(BulletPrefab, LeftGunFireTransform.transform.position, LeftGunFireTransform.transform.rotation).GetComponent<Rigidbody>();
+            leftBullet.velocity = transform.forward * BulletVelocity;
 
-                yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.05f);
 
-                Rigidbody rightBullet = Instantiate(BulletPrefab, RightGunFireTransform.transform.position, RightGunFireTransform.transform.rotation).GetComponent<Rigidbody>();
-                rightBullet.velocity = transform.forward * BulletVelocity;
+            Rigidbody rightBullet = Instantiate(BulletPrefab, RightGunFireTransform.transform.position, RightGunFireTransform.transform.rotation).GetComponent<Rigidbody>();
+            rightBullet.velocity = transform.forward * BulletVelocity;
 
-                yield return new WaitForSeconds(0.05f);
-            }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [HideInInspector]
-    public static bool IsLevelCompleted = false;
-    [HideInInspector]
     public float Speed = 4f;
     [HideInInspector]
     public int Health = 1;
@@ -18,18 +16,10 @@ public class EnemyController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Start()
-    {
-        IsLevelCompleted = false;
-    }
-
     void Update()
     {
         transform.LookAt(Player.transform);
-        if (!IsLevelCompleted)
-        {
-            Move();
-        }
+        Move();
         if (transform.position.y < 0)
         {
             GameManager.Instance.numOfEnemies++;
@@ -45,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
     public void ReduceHealth()
     {
-        GameManager.Instance.numOfEnemies++;
+        GameManager.Instance.numOfEnemies--;
         Destroy(gameObject);
     }
 }

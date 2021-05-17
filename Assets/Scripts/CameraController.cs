@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [HideInInspector]
-    public static bool IsLevelCompleted = false;
-
     public Vector3 Offset;
-    public Vector3 LevelCompletedOffset;
     private GameObject Player;
     private Transform CameraRig;
 
@@ -24,21 +20,11 @@ public class CameraController : MonoBehaviour
                 break;
             }
         }
-        IsLevelCompleted = false;
     }
-
 
     void Update()
     {
-        if (IsLevelCompleted)
-        {
-            transform.position = Player.transform.position + LevelCompletedOffset;
-            transform.LookAt(Player.transform);
-        }
-        else
-        {
-            transform.position = Player.transform.position + Offset;
-            transform.LookAt(CameraRig);
-        }
+        transform.position = Player.transform.position + Offset;
+        transform.LookAt(CameraRig);
     }
 }
